@@ -2,7 +2,11 @@
 
 A modern, full-featured URL shortener built with PHP, MySQL, and Bootstrap 5. Create short links, track clicks, and manage your URLs through a user-friendly dashboard.
 
+<<<<<<< HEAD
 ![URL Shortener](https://go.pkbehera.in/url-ss.png)
+=======
+![URL Shortener]([https://via.placeholder.com/800x400?text=URL+Shortener+Screenshot](https://go.pkbehera.in/url-ss.png))
+>>>>>>> 9e8fb1d2f4f55b07af3482b60df4cea295145842
 
 ## Features
 
