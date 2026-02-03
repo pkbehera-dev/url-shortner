@@ -90,8 +90,9 @@ $most_clicked = $most_clicked_result->fetch_assoc();
         <!-- Quick Shorten -->
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-body">
-                <form id="quickShortenForm" class="d-flex gap-2">
+                <form id="quickShortenForm" class="d-flex gap-2 flex-wrap">
                     <input type="url" class="form-control" id="quickLongUrl" placeholder="Paste URL to shorten..." required>
+                    <input type="text" class="form-control" id="quickName" placeholder="Custom name (optional)" style="max-width: 200px;">
                     <button class="btn btn-primary" type="submit">Shorten</button>
                 </form>
                 <div id="quickResult" class="mt-3 d-none">
@@ -113,6 +114,7 @@ $most_clicked = $most_clicked_result->fetch_assoc();
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
+                                    <th>Name</th>
                                     <th>Original URL</th>
                                     <th>Short URL</th>
                                     <th>Clicks</th>
@@ -122,6 +124,13 @@ $most_clicked = $most_clicked_result->fetch_assoc();
                             <tbody>
                                 <?php foreach ($recent_links as $row): ?>
                                     <tr id="row-<?php echo $row['id']; ?>">
+                                        <td>
+                                            <?php if (!empty($row['name'])): ?>
+                                                <span class="fw-medium"><?php echo htmlspecialchars($row['name']); ?></span>
+                                            <?php else: ?>
+                                                <span class="text-muted">-</span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td class="text-truncate" style="max-width: 250px;">
                                             <a href="<?php echo htmlspecialchars($row['long_url']); ?>" target="_blank" title="<?php echo htmlspecialchars($row['long_url']); ?>">
                                                 <?php echo htmlspecialchars($row['long_url']); ?>
@@ -178,8 +187,12 @@ $most_clicked = $most_clicked_result->fetch_assoc();
         document.getElementById('quickShortenForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const longUrl = document.getElementById('quickLongUrl').value;
+            const name = document.getElementById('quickName').value;
             const formData = new FormData();
             formData.append('long_url', longUrl);
+            if (name) {
+                formData.append('name', name);
+            }
             
             fetch('../api/shorten.php', {
                 method: 'POST',

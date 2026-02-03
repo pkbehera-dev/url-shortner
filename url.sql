@@ -32,6 +32,7 @@ CREATE TABLE `urls` (
   `user_id` int(11) DEFAULT NULL,
   `long_url` text NOT NULL,
   `short_code` varchar(10) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `clicks` int(11) DEFAULT 0,
   `expires_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()

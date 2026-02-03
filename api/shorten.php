@@ -5,7 +5,8 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $long_url = isset($_POST['url']) ? trim($_POST['url']) : (isset($_POST['long_url']) ? trim($_POST['long_url']) : '');
-
+    $name = isset($_POST['name']) ? trim($_POST['name']) : NULL;
+    
     if (empty($long_url)) {
         echo json_encode(['status' => 'error', 'message' => 'URL is required']);
         exit;
@@ -13,6 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!filter_var($long_url, FILTER_VALIDATE_URL)) {
         echo json_encode(['status' => 'error', 'message' => 'Invalid URL format']);
+        exit;
+    }
+
+    // Validate custom name (alphanumeric and dashes only)
+    if ($name && !preg_match('/^[a-zA-Z0-9-_]+$/', $name)) {
+        echo json_encode(['status' => 'error', 'message' => 'Custom name can only contain letters, numbers, hyphens, and underscores']);
+        exit;
+    }
+
+    // Check if custom name is already taken
+    if ($name && nameExists($conn, $name)) {
+        echo json_encode(['status' => 'error', 'message' => 'This custom name is already taken']);
         exit;
     }
 
@@ -35,18 +48,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Unregistered user: Set expiration to 7 days from now
         $expires_at = date('Y-m-d H:i:s', strtotime('+7 days'));
+        // Unregistered users cannot use custom names
+        $name = NULL;
     }
 
-    // Generate unique short code
-    $short_code = generateShortCode();
-    
-    // Check if code exists (collision check)
-    while (codeExists($conn, $short_code)) {
+    // Use custom name as short code if provided, otherwise generate one
+    if ($name) {
+        $short_code = $name;
+    } else {
+        // Generate unique short code
         $short_code = generateShortCode();
+        
+        // Check if code exists (collision check)
+        while (codeExists($conn, $short_code)) {
+            $short_code = generateShortCode();
+        }
     }
 
-    $stmt = $conn->prepare("INSERT INTO urls (user_id, long_url, short_code, expires_at) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $user_id, $long_url, $short_code, $expires_at);
+    $stmt = $conn->prepare("INSERT INTO urls (user_id, long_url, short_code, name, expires_at) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $user_id, $long_url, $short_code, $name, $expires_at);
 
     if ($stmt->execute()) {
         $short_url = BASE_URL . $short_code;
@@ -76,6 +96,16 @@ function generateShortCode($length = 6) {
 function codeExists($conn, $code) {
     $stmt = $conn->prepare("SELECT id FROM urls WHERE short_code = ?");
     $stmt->bind_param("s", $code);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $exists = $result->num_rows > 0;
+    $stmt->close();
+    return $exists;
+}
+
+function nameExists($conn, $name) {
+    $stmt = $conn->prepare("SELECT id FROM urls WHERE short_code = ?");
+    $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
     $exists = $result->num_rows > 0;
