@@ -4,7 +4,7 @@ require_once '../config/db.php';
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $long_url = trim($_POST['url']);
+    $long_url = isset($_POST['url']) ? trim($_POST['url']) : (isset($_POST['long_url']) ? trim($_POST['long_url']) : '');
 
     if (empty($long_url)) {
         echo json_encode(['status' => 'error', 'message' => 'URL is required']);
