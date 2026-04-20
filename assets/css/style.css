@@ -1,33 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap');
+
+:root {
+    --primary-color: #1a1a1a;
+    --accent-color: #3b82f6;
+    --bg-color: #fcfcfc;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+}
+
 body {
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-main);
 }
 
 footer {
     margin-top: auto;
+    background-color: var(--card-bg) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--text-muted) !important;
+}
+
+footer a:hover {
+    color: var(--primary-color) !important;
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 100px 0;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    padding: 100px 0 120px 0;
     text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-section .display-4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.hero-section p.lead {
+    color: var(--text-muted);
+    font-weight: 400;
 }
 
 .shortener-box {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    margin-top: -50px;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+}
+
+.shortener-box .form-control {
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+}
+
+.shortener-box .form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.shortener-box .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0 30px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.shortener-box .btn-primary:hover {
+    background-color: #000;
+    border-color: #000;
 }
 
 .result-box {
     display: none;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
+    margin-top: 25px;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
+
+.feature-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.feature-card {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    background: transparent;
+}
+
+.benefits-section {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 80px 0;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.benefit-item .icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.benefit-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.benefit-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--card-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.navbar-brand i {
+    color: var(--accent-color);
+}
+
+.nav-link {
+    color: var(--text-main) !important;
+    font-weight: 500;
+    padding: 8px 16px !important;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.nav-link.active {
+    color: var(--accent-color) !important;
+}
+
+/* Auth & Card Styles */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.auth-card {
+    border: none;
+    background-color: var(--card-bg);
+}
+
+.auth-header {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 12px 12px 0 0 !important;
+    padding: 2.5rem 1rem;
+    text-align: center;
+}
+
+.auth-header h3 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.auth-header p {
+    color: var(--text-muted);
+}
+
+.btn-auth {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-auth:hover {
+    background-color: #000 !important;
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    z-index: 10;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle:hover {
+    color: var(--accent-color);
+}
+

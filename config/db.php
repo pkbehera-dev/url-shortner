@@ -3,7 +3,7 @@
 $dbHost = 'localhost';
 $dbUsername = 'root';
 $dbPassword = ''; // Default XAMPP password is empty
-$dbName = 'url';
+$dbName = 'bookandb_url';
 
 // Create connection
 $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
@@ -20,7 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Base URL configuration
 // You can hardcode your domain here if dynamic detection fails or if you are behind a proxy.
-define('BASE_URL', 'https://localhost/');
+define('BASE_URL', 'http://localhost/url_shortner/');
 
 // If you prefer dynamic detection, uncomment the lines below and comment out the line above.
 /*

@@ -14,7 +14,7 @@ if ($current_path == '/auth' || strpos($current_path, '/auth/') !== false) {
     $base_prefix = ''; // Root level
 }
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="<?php echo $base_prefix; ?>index"><i class="bi bi-link-45deg"></i> URL Shortener</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -40,7 +40,7 @@ $most_clicked = $most_clicked_result->fetch_assoc();
     <title>Dashboard - URL Shortener</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-light">
     <?php include '../includes/navbar.php'; ?>
@@ -48,7 +48,8 @@ $most_clicked = $most_clicked_result->fetch_assoc();
     <div class="container py-4">
         <!-- Header -->
         <div class="mb-4">
-            <h4 class="mb-0">HII <?php echo htmlspecialchars($username); ?> 👋</h4>
+            <h4 class="mb-0 fw-bold">Welcome back, <?php echo htmlspecialchars($username); ?></h4>
+            <p class="text-muted">Here's an overview of your link performance.</p>
         </div>
 
         <!-- Stats Row -->
@@ -56,7 +57,7 @@ $most_clicked = $most_clicked_result->fetch_assoc();
             <div class="col-md-3">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body text-center py-3">
-                        <h3 class="fw-bold text-primary mb-1"><?php echo $link_count; ?></h3>
+                        <h3 class="fw-bold mb-1"><?php echo $link_count; ?></h3>
                         <p class="text-muted small mb-0">Total Links</p>
                     </div>
                 </div>

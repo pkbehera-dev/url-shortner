@@ -55,53 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password - URL Shortener</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <style>
-        .auth-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .auth-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            padding: 30px;
-            text-align: center;
-        }
-        .form-control {
-            border-radius: 8px;
-            padding: 12px;
-        }
-        .btn-auth {
-            border-radius: 8px;
-            padding: 12px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-        }
-        .btn-auth:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-        }
-        .password-toggle {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #6c757d;
-            z-index: 10;
-        }
-        .password-toggle:hover {
-            color: #667eea;
-        }
-        .password-wrapper {
-            position: relative;
-        }
-    </style>
+
 </head>
 <body class="bg-light">
     <?php include '../includes/navbar.php'; ?>

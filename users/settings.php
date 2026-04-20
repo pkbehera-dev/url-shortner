@@ -105,35 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Settings - URL Shortener</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .settings-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .form-control {
-            border-radius: 8px;
-            padding: 10px 12px;
-        }
-        .password-toggle {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #6c757d;
-            z-index: 10;
-        }
-        .password-toggle:hover {
-            color: #667eea;
-        }
-        .password-wrapper {
-            position: relative;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body class="bg-light">
     <?php include '../includes/navbar.php'; ?>
